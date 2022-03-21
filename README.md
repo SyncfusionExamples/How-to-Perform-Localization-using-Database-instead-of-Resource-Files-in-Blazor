@@ -11,3 +11,7 @@ This example shows how to perform the localization by using the database without
 ![Connection String](./wwwroot/images/connection_string.png)
 * Run the project
 
+## See also
+
+[Blazor Localization](https://blazor.syncfusion.com/documentation/common/localization)
+[Localization Resx file location](https://github.com/SyncfusionExamples/blazor-localization)
