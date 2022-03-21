@@ -14,4 +14,5 @@ This example shows how to perform the localization by using the database without
 ## See also
 
 [Blazor Localization](https://blazor.syncfusion.com/documentation/common/localization)
+
 [Localization Resx file location](https://github.com/SyncfusionExamples/blazor-localization)
