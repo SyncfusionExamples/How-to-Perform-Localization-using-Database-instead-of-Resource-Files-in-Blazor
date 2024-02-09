@@ -1,15 +1,20 @@
 # How to Perform Localization using Database instead of Resource Files in Blazor
 
-This example shows how to perform the localization by using the database without using the resource files in Blazor.
+This example shows how to perform the localization by using the database without using the resource files in Blazor Server App.
 
-**Steps to run the demo**
+**Reference KB**: https://support.syncfusion.com/kb/article/11465/how-to-perform-localization-using-database-instead-of-resource-files-in-blazor
 
-* Clone/Download the demo and open Project in Visual studio 2019/2022
-* Double click the `SyncLocalization.mdf` file in `App_Data` for load the Database table
-* Once Database loaded, then Get/Copy the connection string by click the Database properties.
-* Paste the connection string in `appsettings.json`
-![Connection String](./wwwroot/images/connection_string.png)
-* Run the project
+## Prerequisites
+
+* Visual Studio 2022
+
+## How to run the project
+
+* Checkout this project to a location in your disk.
+* Open the solution file using the Visual Studio 2022.
+* Restore the NuGet packages by rebuilding the solution.
+* Connect the database to the project.
+* Run the project.
 
 ## See also
 

@@ -1,26 +1,59 @@
-using Microsoft.AspNetCore.Hosting;
+using BlazorServerWithLocalization.Data;
+using BlazorServerWithLocalization.Models;
+using BlazorServerWithLocalization.Shared;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using Syncfusion.Blazor;
+using System.Globalization;
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzA5MzE2NUAzMjM0MmUzMDJlMzBLSjdIWHA2T1pZV09IRjAyeDFDd21ZKzFCSWdId2JxTDdGOVErUzFFNmVVPQ==");
+var builder = WebApplication.CreateBuilder(args);
 
-namespace BlazorServer
+// Add services to the container.
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<SyncLocalizationContext>(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBConString"));
+});
+builder.Services.AddSyncfusionBlazor();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+var context =builder.Services.BuildServiceProvider().GetService<SyncLocalizationContext>();
+builder.Services.AddSingleton<ISyncfusionStringLocalizer>(serviceProvider => new SyncfusionLocalizer(context));
+
+var supportedCultures = new List<CultureInfo>()
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("de")
+            };
+var localizationOptions=new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en-US"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+};
+var app = builder.Build();
+app.UseRequestLocalization(localizationOptions);
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseRouting();
+app.MapControllers();
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
+
+app.Run();

@@ -1,14 +1,14 @@
 ﻿using Syncfusion.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using BlazorServer.Models;
+using BlazorServerWithLocalization.Models;
 using System.Collections;
 using System.Linq;
 using Syncfusion.Blazor.Data;
 using System.Globalization;
 using System.Collections.Generic;
 
-namespace BlazorServer.Shared
+namespace BlazorServerWithLocalization.Shared
 {
     public class SyncfusionLocalizer : ISyncfusionStringLocalizer
     {
