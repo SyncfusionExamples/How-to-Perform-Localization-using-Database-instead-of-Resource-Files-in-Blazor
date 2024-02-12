@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Syncfusion.Blazor;
 using System.Globalization;
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzA5MzE2NUAzMjM0MmUzMDJlMzBLSjdIWHA2T1pZV09IRjAyeDFDd21ZKzFCSWdId2JxTDdGOVErUzFFNmVVPQ==");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
